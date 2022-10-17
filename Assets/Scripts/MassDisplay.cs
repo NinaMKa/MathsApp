@@ -8,7 +8,7 @@ public class MassDisplay : MonoBehaviour
     private string textMass = "";
     void Update()
     {
-        textMass = "" + GetComponent<Rigidbody2D>().mass; 
+        textMass = "" + string.Format("{0:0.##}", GetComponent<Rigidbody2D>().mass); //ToString("n2");
         GetComponentInChildren<TMP_Text>().text = textMass;
     }
 }

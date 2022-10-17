@@ -65,7 +65,7 @@ public class EquationDisplay : MonoBehaviour
             rightMass += right[i].GetComponent<Rigidbody2D>().mass;
             if (right[i].name == "Unknown")
             {
-                unknownMassRight += rightMass += right[i].GetComponent<Rigidbody2D>().mass;
+                unknownMassRight += right[i].GetComponent<Rigidbody2D>().mass;
             }
             else
             {
@@ -78,28 +78,28 @@ public class EquationDisplay : MonoBehaviour
 
         if (unknownNumberLeft == 0)
         {
-            leftString = "" + otherLeftMass;
-        }
+            leftString = "" + string.Format("{0:0.##}", otherLeftMass);
+        } 
         if (unknownNumberLeft == 1 && otherLeftMass == 0)
         {
             leftString = "X ";
         }
         if (unknownNumberLeft == 1 && otherLeftMass != 0)
         {
-            leftString = "X + " + otherLeftMass;
+            leftString = "X + " + string.Format("{0:0.##}", otherLeftMass);
         }
         if (unknownNumberLeft != 0 && unknownNumberLeft != 1 && otherLeftMass == 0)
         {
-            leftString = "" + unknownNumberLeft + "X ";
+            leftString = "" + string.Format("{0:0.##}", unknownNumberLeft) + "X ";
         }
         if (unknownNumberLeft != 0 && unknownNumberLeft != 1 && otherLeftMass != 0)
         {
-            leftString = "" + unknownNumberLeft + "X + " + otherLeftMass;
+            leftString = "" + string.Format("{0:0.##}", unknownNumberLeft) + "X + " + string.Format("{0:0.##}", otherLeftMass);
         }
 
         if (unknownNumberRight == 0)
         {
-            rightString = "" + otherRightMass;
+            rightString = "" + string.Format("{0:0.##}", otherRightMass);
         }
         if (unknownNumberRight == 1 && otherRightMass == 0)
         {
@@ -107,15 +107,15 @@ public class EquationDisplay : MonoBehaviour
         }
         if (unknownNumberRight == 1 && otherRightMass != 0)
         {
-            rightString = "X + " + otherRightMass;
+            rightString = "X + " + string.Format("{0:0.##}", otherRightMass);
         }
         if (unknownNumberRight != 0 && unknownNumberRight != 1 && otherRightMass == 0)
         {
-            rightString = "" + unknownNumberRight + "X ";
+            rightString = "" + string.Format("{0:0.##}", unknownNumberRight) + "X ";
         }
         if (unknownNumberRight != 0 && unknownNumberRight != 1 && otherRightMass != 0)
         {
-            rightString = "" + unknownNumberRight + "X + " + otherRightMass;
+            rightString = "" + string.Format("{0:0.##}", unknownNumberRight) + "X + " + string.Format("{0:0.##}", otherRightMass);
         }
 
 

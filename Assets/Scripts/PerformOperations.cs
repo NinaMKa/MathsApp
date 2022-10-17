@@ -19,13 +19,21 @@ public class PerformOperations : MonoBehaviour
     [SerializeField] Button rightSideButton;
     [SerializeField] Button undoButton;
 
+    GameObject[] numbersButtons;
+
     private float num = 0;
     private int lastOperation = 0;
     private float lastNumber = 0f;
 
+    private int trialCount = 0;
+
     public void PerformOperation()
     {
-        GameObject[] numbersButtons;
+        if(trialCount == 4)
+        {
+            Restart();
+        }
+
         numbersButtons = GameObject.FindGameObjectsWithTag("NumberChoice");
         for(int i =0; i<numbersButtons.Length; i++)
         {
@@ -55,7 +63,8 @@ public class PerformOperations : MonoBehaviour
             if(bothSidesButton.interactable == false)
             {
                 AddOnRight(num);
-                AddOnLeft(num);        
+                AddOnLeft(num);    
+                trialCount++;    
             }
         }
 
@@ -79,6 +88,7 @@ public class PerformOperations : MonoBehaviour
             {
                 TakeAwayOnLeft(num);
                 TakeAwayOnRight(num);
+                trialCount++;
             }
         }
 
@@ -102,6 +112,7 @@ public class PerformOperations : MonoBehaviour
             {
                 MultiplyLeft(num);
                 MultiplyRight(num);
+                trialCount++;
             }
         }
 
@@ -125,9 +136,9 @@ public class PerformOperations : MonoBehaviour
             {
                 DivideLeft(num);
                 DivideRight(num);
+                trialCount++;
             }
         }
-
     }
     
     private void AddOnLeft(float num)
@@ -200,7 +211,7 @@ public class PerformOperations : MonoBehaviour
         GameObject[] right = GameObject.FindGameObjectsWithTag("Right");
             for(int i=0; i<right.Length; i++)
             {
-                right[i].GetComponent<Rigidbody2D>().mass /= num;
+                right[i].GetComponent<Rigidbody2D>().mass *= num;
             }
     }
     private void DivideLeft(float num)
