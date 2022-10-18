@@ -45,15 +45,16 @@ public class ScaleMovement : MonoBehaviour
         {
            // transform.Rotate( 0, 0, 10); //*speed *Time.deltaTime);
            animator.SetBool("balanced", false);
-           animator.SetBool("rightDown", false);
+          //animator.SetBool("rightDown", false);'
+          //Debug.Log(leftMass);
            animator.SetBool("leftDown", true);
         }
         
-        if(leftMass < rightMass)
+        else if(leftMass < rightMass)
         {
             //transform.Rotate( 0, 0, -10);// *speed *Time.deltaTime);
             animator.SetBool("balanced", false);
-            animator.SetBool("leftDown", false);
+          //  animator.SetBool("leftDown", false);
             animator.SetBool("rightDown", true);
         }
 
