@@ -18,6 +18,7 @@ public class PerformOperations : MonoBehaviour
     [SerializeField] Button bothSidesButton;
     [SerializeField] Button rightSideButton;
     [SerializeField] Button undoButton;
+    [SerializeField] GameObject leftposition;
 
     GameObject[] numbersButtons;
 
@@ -143,7 +144,7 @@ public class PerformOperations : MonoBehaviour
     
     private void AddOnLeft(float num)
     {
-        GameObject weightClone = Instantiate(leftWeight);
+        GameObject weightClone = Instantiate(leftWeight, leftposition.transform.position, Quaternion.identity ,leftposition.transform);
         weightClone.GetComponent<Rigidbody2D>().mass = num;
     }
 
@@ -163,10 +164,11 @@ public class PerformOperations : MonoBehaviour
                 left[i].GetComponent<Rigidbody2D>().mass-=num;
                 break;
             }
-            if(left[i].GetComponent<Rigidbody2D>().mass < num)
+            else if(left[i].GetComponent<Rigidbody2D>().mass < num)
             {
                 num -= left[i].GetComponent<Rigidbody2D>().mass;
                 Destroy(left[i]);
+                continue;
             }
             else
             {
@@ -185,10 +187,11 @@ public class PerformOperations : MonoBehaviour
                 right[i].GetComponent<Rigidbody2D>().mass-=num;
                 break;
             }
-            if(right[i].GetComponent<Rigidbody2D>().mass < num)
+            else if(right[i].GetComponent<Rigidbody2D>().mass < num)
             {
                 num -= right[i].GetComponent<Rigidbody2D>().mass;
                 Destroy(right[i]);
+                continue;
             }
             else
             {
