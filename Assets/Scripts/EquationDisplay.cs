@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EquationDisplay : MonoBehaviour
 {
@@ -122,9 +123,19 @@ public class EquationDisplay : MonoBehaviour
         leftText.text = "" + leftString;
         rightText.text = "" + rightString;
 
+        if((leftString == "X " && rightString==string.Format("{0:0.##}", originalUnknownMass)) || (leftString==string.Format("{0:0.##}", originalUnknownMass) && rightString == "X "))
+        {
+            Invoke("LoadNextScene", 1f);
+        }
+
         if (leftMass != rightMass)
         {
             cross.GetComponent<Image>().enabled = true;
         }
+    }
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }
