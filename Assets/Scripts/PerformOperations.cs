@@ -20,6 +20,7 @@ public class PerformOperations : MonoBehaviour
     [SerializeField] Button undoButton;
     [SerializeField] GameObject leftposition;
     [SerializeField] GameObject rightposition;
+    [SerializeField] GameObject scale;
 
     GameObject[] numbersButtons;
 
@@ -120,9 +121,13 @@ public class PerformOperations : MonoBehaviour
                 {
                     return;
                 }
+                //scale.GetComponent<Animator>().enabled = false;
                 TakeAwayOnLeft(num);
+                //scale.GetComponent<Animator>().enabled = false;
                 TakeAwayOnRight(num);
+                //scale.GetComponent<Animator>().enabled = false;
                 trialCount++;
+                //scale.GetComponent<Animator>().enabled = true;
             }
         }
 

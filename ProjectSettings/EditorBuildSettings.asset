@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 3f621b3a895a8518a8f2a7c043b260a5
+  - enabled: 1
     path: Assets/Scenes/Equation1.unity
     guid: f0602d936ee74d6e3a5bb8dc28f48b60
   - enabled: 1
-    path: Assets/Scenes/Equation1Solved.unity
-    guid: 3f621b3a895a8518a8f2a7c043b260a5
+    path: Assets/Scenes/Equation1Finished.unity
+    guid: 814178534be73ca9ab73266dab377a07
+  - enabled: 1
+    path: Assets/Scenes/Equation2.unity
+    guid: 1a35ab92992b4a941aa12f994e969e7b
+  - enabled: 1
+    path: Assets/Scenes/Equation2Finished.unity
+    guid: e659970d5dffc4e1c84b30b073bbe23c
   m_configObjects: {}
