@@ -19,6 +19,7 @@ public class PerformOperations : MonoBehaviour
     [SerializeField] Button rightSideButton;
     [SerializeField] Button undoButton;
     [SerializeField] GameObject leftposition;
+    [SerializeField] GameObject rightposition;
 
     GameObject[] numbersButtons;
 
@@ -71,8 +72,32 @@ public class PerformOperations : MonoBehaviour
 
         if(minusButton.interactable == false && num!=0)
         {
+            float otherLeftMass=0f;
+            float otherRightMass=0f;
+            GameObject[] left = GameObject.FindGameObjectsWithTag("Left");
+            GameObject[] right = GameObject.FindGameObjectsWithTag("Right");
+            for (int i = 0; i < left.Length; i++)
+            {
+                if (left[i].name != "Unknown")
+                {
+                    otherLeftMass += left[i].GetComponent<Rigidbody2D>().mass;
+                }
+            }
+
+            for (int i = 0; i < right.Length; i++)
+            {
+                if (right[i].name != "Unknown")
+                {
+                    otherRightMass += left[i].GetComponent<Rigidbody2D>().mass;
+                }
+            }
+
             if(leftSideButton.interactable == false)
             {
+                if(otherLeftMass==0 || otherLeftMass<num)
+                {
+                    return;
+                }
                 TakeAwayOnLeft(num);
                 lastNumber = num;
                 lastOperation = 3;
@@ -80,6 +105,10 @@ public class PerformOperations : MonoBehaviour
             }
             if(rightSideButton.interactable == false)
             {
+                if(otherRightMass==0 || otherRightMass<num)
+                {
+                    return;
+                }
                 TakeAwayOnRight(num);
                 lastNumber = num;
                 lastOperation = 4;
@@ -87,6 +116,10 @@ public class PerformOperations : MonoBehaviour
             }
             if(bothSidesButton.interactable == false)
             {
+                if(otherLeftMass==0 || otherLeftMass<num || otherRightMass==0 || otherRightMass<num)
+                {
+                    return;
+                }
                 TakeAwayOnLeft(num);
                 TakeAwayOnRight(num);
                 trialCount++;
@@ -144,14 +177,36 @@ public class PerformOperations : MonoBehaviour
     
     private void AddOnLeft(float num)
     {
+        GameObject[] left = GameObject.FindGameObjectsWithTag("Left");
+        for(int i=left.Length-1; i>=0; i--)
+        {
+            if(left[i].name != "Unknown")
+            {
+                left[i].GetComponent<Rigidbody2D>().mass+=num;
+                return;
+            }
+        }
         GameObject weightClone = Instantiate(leftWeight, leftposition.transform.position, Quaternion.identity ,leftposition.transform);
         weightClone.GetComponent<Rigidbody2D>().mass = num;
-    }
+        weightClone.transform.localScale -= new Vector3(0.05f, 0.05f, 0.05f);
 
+    }
     private void AddOnRight(float num)
     {
-        GameObject weightClone = Instantiate(rightWeight);
+      //  GameObject weightClone = Instantiate(rightWeight);
+       // weightClone.GetComponent<Rigidbody2D>().mass = num;
+        GameObject[] right = GameObject.FindGameObjectsWithTag("Right");
+        for(int i=right.Length-1; i>=0; i--)
+        {
+            if(right[i].name != "Unknown")
+            {
+                right[i].GetComponent<Rigidbody2D>().mass+=num;
+                return;
+            }
+        }
+        GameObject weightClone = Instantiate(rightWeight, rightposition.transform.position, Quaternion.identity ,rightposition.transform);
         weightClone.GetComponent<Rigidbody2D>().mass = num;
+        weightClone.transform.localScale -= new Vector3(0.05f, 0.05f, 0.05f);
     }
 
     private void TakeAwayOnLeft(float num)

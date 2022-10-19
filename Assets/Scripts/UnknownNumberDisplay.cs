@@ -17,7 +17,7 @@ public class UnknownNumberDisplay : MonoBehaviour
     {
         if(GetComponent<Rigidbody2D>().mass/originalUnknownMass != 1)
         {
-            textMass = "" + string.Format("{0:0.##}", GetComponent<Rigidbody2D>().mass/originalUnknownMass) + "X"; 
+            textMass = "" + string.Format("{0:0.##}", GetComponent<Rigidbody2D>().mass/originalUnknownMass) + " X"; 
         }
         else
         {
